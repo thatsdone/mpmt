@@ -61,7 +61,7 @@ if __name__ == "__main__":
         print('creating worker: %d (mode: %s)' % (i, 'thread' if use_thread else 'process'))
         if use_thread:
             w = threading.Thread(target=busy_worker, args=(i, duration))
-            w.setName('busy_worker/%d' % (i))
+            w.name = 'busy_worker/%d' % (i)
         else:
             w = multiprocessing.Process(target=busy_worker, args=(i, duration))
 
