@@ -70,4 +70,4 @@ if __name__ == "__main__":
 
     for w in workers:
         w.join()
-        print('join: %s %s' % (w.getName(), w))
+        print('join: %s %s' % (w.name, w))
