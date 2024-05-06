@@ -69,6 +69,11 @@ Common across languages.
   * Run the executables on a server at least 2 (v)CPUs.
   * Observe CPU usage by using top command for example. (Better to refresh frequently using '-d 1'.)
   * You would see python threading model can consume only 1 CPU (100%) even if there are multiple CPUs and you specifed more than 2 contexts.
+  * Notes on Python GIL(May 6, 2024)
+      * Python community made GIL optional as of 3.13.
+          * https://peps.python.org/pep-0703/
+      * This enabled mpmt1.py thread mode running in the same parallelism with multiprocessing mode.
+      * I checked using in-house built Python 3.13.0a6 on Ubuntu 22.04 with PYTHON_GIL=0 environment variable.
 
 * TODO
   * Add some more languages. (Java, Erlang, Haskell, Swift, Closure, WebAssembly(?), TypeScript, Racket ...etc)
