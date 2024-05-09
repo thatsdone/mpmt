@@ -1,8 +1,8 @@
 # mpmt : Multi-Process Multi-Thread examples
 
 This directory contains various (normally) small example programs to see
-hehaviour differences of multi-process and multi-thread programming model
-frameworks of various languages.
+behaviour differences of multi-process and multi-thread programming model
+frameworks of various languages/runtimes.
 
 ## 1. A simple busy loop workload generator
 
@@ -61,7 +61,7 @@ Common across languages.
       * Note that you need to increase maximum thread number of Julia runtime by JULIA_NUM_THREADS environment variable not only -n NUM_CONTEXT.
   * Perl: mpmt1.pl
       * Thread mode only at the moment.
-      * Note: Perl interpreter-based thred runs parallelly not only concurrently different from Python, Ruby, etc.
+      * Note: Perl interpreter-based thread runs parallelly not only concurrently different from Python, Ruby, etc.
   * Elixir: mpmt1.exs
       * Just worked version. Need blush up.
 
@@ -72,8 +72,7 @@ Common across languages.
   * Notes on Python GIL(May 6, 2024)
       * Python community made GIL optional as of 3.13.
           * https://peps.python.org/pep-0703/
-      * This enabled mpmt1.py thread mode running in the same parallelism with multiprocessing mode.
-      * I checked using in-house built Python 3.13.0a6 on Ubuntu 22.04 with PYTHON_GIL=0 environment variable.
+      * This enabled mpmt1.py thread mode running in the same parallelism with multiprocessing mode. I checked using in-house built Python 3.13.0a6 on Ubuntu 22.04 with PYTHON_GIL=0 environment variable.
 
 * TODO
   * Add some more languages. (Java, Erlang, Haskell, Swift, Closure, WebAssembly(?), TypeScript, Racket ...etc)
