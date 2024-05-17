@@ -64,6 +64,12 @@ Common across languages.
       * Note: Perl interpreter-based thread runs parallelly not only concurrently different from Python, Ruby, etc.
   * Elixir: mpmt1.exs
       * Just worked version. Need blush up.
+  * Haskell: mpmt1.hs
+      * Thread mode (using forkIO) only at the moment.
+      * Does not implement getopt yet. Current usage is below:
+          * `$ ghc -threaded  -rtsopts mpmt1.hs -o mpmt1hs`
+          * `$ ./mpmt1hs DURATION NUM_CONTEXT +RTS -Nn `
+          * DURATION is in seconds, n of -N is number of platorm threads)
 
 * Notes
   * Run the executables on a server at least 2 (v)CPUs.
@@ -75,7 +81,7 @@ Common across languages.
       * This enabled mpmt1.py thread mode running in the same parallelism with multiprocessing mode. I checked using in-house built Python 3.13.0a6 on Ubuntu 22.04 with PYTHON_GIL=0 environment variable.
 
 * TODO
-  * Add some more languages. (Java, Erlang, Haskell, Swift, Closure, WebAssembly(?), TypeScript, Racket ...etc)
+  * Add some more languages. (Java, Erlang, Swift, Closure, WebAssembly(?), TypeScript, Racket ...etc)
 
 ## 2. A simple test program for inter thread/process communication
 
