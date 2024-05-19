@@ -70,6 +70,9 @@ Common across languages.
           * `$ ghc -threaded  -rtsopts mpmt1.hs -o mpmt1hs`
           * `$ ./mpmt1hs DURATION NUM_CONTEXT +RTS -Nn `
           * DURATION is in seconds, n of -N is number of platorm threads)
+  * Erlang: mpmt1.erl
+      * Similar status with Haskell
+      * See comments in mpmt1.erl
 
 * Notes
   * Run the executables on a server at least 2 (v)CPUs.
@@ -81,7 +84,7 @@ Common across languages.
       * This enabled mpmt1.py thread mode running in the same parallelism with multiprocessing mode. I checked using in-house built Python 3.13.0a6 on Ubuntu 22.04 with PYTHON_GIL=0 environment variable.
 
 * TODO
-  * Add some more languages. (Java, Erlang, Swift, Closure, WebAssembly(?), TypeScript, Racket ...etc)
+  * Add some more languages. (Java, Pascal, C++, Swift, WebAssembly(?), TypeScript, etc.)
 
 ## 2. A simple test program for inter thread/process communication
 
