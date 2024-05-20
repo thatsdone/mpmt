@@ -10,6 +10,7 @@ rust:
 	rustc -o mpmt1rs mpmt1.rs
 scala:
 	scalac mpmt1.scala
-
+haskell:
+	ghc -threaded -rtsopts -o mpmt1hs mpmt1.hs
 clean:
-	/bin/rm -f mpmt1rs mpmt1c mpmt1go *~ *.class *.tasty
+	/bin/rm -f mpmt1rs mpmt1c mpmt1go *~ *.class *.tasty *.dump *.beam mpmt1hs mpmt1.hi *.o 
