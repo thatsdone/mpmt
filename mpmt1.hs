@@ -9,7 +9,7 @@
 --   Masanori Itoh <masanori.itoh@gmail.com>
 -- Usage:
 ---  $ ghc -threaded  -rtsopts mpmt1.hs -o mpmt1hs
----  $ ./mpmt1hs DURATION(in sec.) NUM_CONTEXT +RTS -Nn (n: number of threads)
+---  $ ./mpmt1hs NUM_CONTEXT DURATION(in sec.) +RTS -Nn (n: number of threads)
 ---  Note that n of -Nn should be greater than equal NUM_CONTEXT in order to
 ---  use requested multi cores fully.
 -- TODO:
@@ -46,9 +46,9 @@ main = do
   args <- getArgs
  
   let num_context = if length args >= 2
-                    then (read  (args !! 1) :: Int) else 4
+                    then (read  (head args) :: Int) else 4
   let duration = if not (null args)
-                 then (read  (head args)  :: Int) * 1000 else 5000
+                 then (read  (args !! 1)  :: Int) * 1000 else 5000
 
   printf "duration: %d (ms) num_context: %d\n"  duration num_context
 
