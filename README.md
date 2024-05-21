@@ -77,6 +77,11 @@ Common across languages.
       * `$ cd java && mvn clean package`
       * Supports Virtual Thread after JDK 19.
       * See java/README.md for the details.
+  * Pascal: mpmt1.pas
+      * Install FreePascal
+      * Usage below
+          * `$ fpc -o mpmt1pas mpmt1.pas`
+          * `$ ./mpmt1pas NUM_CONTEXT DURATION`
 
 * Notes
   * Run the executables on a server at least 2 (v)CPUs.
@@ -88,7 +93,7 @@ Common across languages.
       * This enabled mpmt1.py thread mode running in the same parallelism with multiprocessing mode. I checked using in-house built Python 3.13.0a6 on Ubuntu 22.04 with PYTHON_GIL=0 environment variable.
 
 * TODO
-  * Add some more languages. (Pascal, C++, C#, Swift, WebAssembly(?), TypeScript, etc.)
+  * Add some more languages. (Swift, C++, C#, WebAssembly(?), TypeScript, etc.)
 
 ## 2. A simple test program for inter thread/process communication
 
