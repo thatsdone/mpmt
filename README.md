@@ -10,22 +10,22 @@ Run executables on a server at least 2 (v)CPUs, and observe CPU usage using top 
 
 Here is the list of languages implemented.
 
-1. Python
-2. C
-3. Golang
-4. Rust
-5. Ruby
-6. Node.js
-7. Scala
-8. Lua
-9. Common Lisp
-10. Julia
-11. Perl
-12. Elixir
-13. Haskell
-14. Erlang
-15. Java
-16. Pascal
+1. Python (thread/process)
+2. C (thread/process)
+3. Golang (goroutine(roughtly thread))
+4. Rust (thread)
+5. Ruby (thread)
+6. Node.js (process)
+7. Scala (thread)
+8. Lua (coroutine)
+9. Common Lisp (thread)
+10. Julia (thread)
+11. Perl (thread)
+12. Elixir (thread)
+13. Haskell (thread)
+14. Erlang (thrad)
+15. Java (thread)
+16. Pascal (thread)
 
 ### Usage
 
@@ -93,7 +93,7 @@ Common across languages.
     * Install GHC.
     * Does not implement getopt yet. Current usage is below:
         * `$ ghc -threaded  -rtsopts mpmt1.hs -o mpmt1hs`
-        * `$ ./mpmt1hs DURATION NUM_CONTEXT +RTS -Nn `
+        * `$ ./mpmt1hs NUM_CONTEXT DURATION +RTS -Nn `
         * DURATION is in seconds, n of -N is number of platorm threads
 * Erlang: mpmt1.erl
     * Thread mode only at the moment.
