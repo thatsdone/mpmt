@@ -26,6 +26,7 @@ Here is the list of languages implemented.
 14. Erlang (thrad)
 15. Java (thread)
 16. Pascal (thread)
+17. Swift (thread)
 
 ### Usage
 
@@ -110,10 +111,12 @@ Common across languages.
     * Usage
         * `$ fpc -o mpmt1pas mpmt1.pas`
         * `$ ./mpmt1pas NUM_CONTEXT DURATION`
-
+* Swift: mpmt1.swift
+    * Thread mode only at the moment.
+    * Tested using Swift docker image swift-5.10-RELEASE
 
 ### TODO
-* Add some more languages. (Swift, C++, C#, WebAssembly(?), TypeScript, etc.)
+* Add some more languages. (C++, C#, WebAssembly(?), TypeScript, etc.)
 
 
 ## 2. A simple test program for inter thread/process communication
