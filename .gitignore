@@ -1,0 +1,10 @@
+.o
+.so
+*~
+*.pyc
+*.hi
+*.dump
+*.beam
+*.class
+java/target
+.dart_tool/
