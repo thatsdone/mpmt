@@ -55,20 +55,28 @@ Common across languages.
         * This enabled mpmt1.py thread mode running in the same parallelism with multiprocessing mode. I checked using in-house built Python 3.13.0a6 on Ubuntu 22.04 with PYTHON_GIL=0 environment variable.
 * C: mpmt1.c
   * Uses pthread and fork().
-  * Build
-    * Simplly `make c`, and execute `./mpmt1c`
+  * Usage
+    * `make c`
+    * `./mpmt1c`
 * Go: mpmt1.go
     * Uses goroutine. No process mode at the moment.
-    * Simply `go run mpmt1.go` or`make go`, and `./mpmt1go`
+    * Usage
+        * `go run mpmt1.go` or
+        * `make go && ./mpmt1go`
 * Rust: mpmt1.rs
     * Implements thread mode only. No process mode at the moment.
     * Use nightly tool chain as this uses 'crate'.
-    * Simply `make rust `, and `./mpmt1rs`
+    * Usage
+        * `make rust`
+        * `./mpmt1rs`
 * Ruby: mpmt1.rb
     * Implements thread mode only. No process mode at the moment.
 * Node.js: mpmt1.js
     * Implements process mode only. No thread mode at the moment.
+    * Tested using Ubuntu 22.04 bundled nodejs 12.22.9
     * Install 'posix-getopt'
+    * TODO
+        * Use worker-thread
 * Scala: mpmt1.scala
     * Implements thread mode only. No process mode at the moment.
     * In case of Ubuntu, use scala3.
@@ -89,25 +97,29 @@ Common across languages.
     * Note: Perl interpreter-based thread runs parallelly not only concurrently different from Python, Ruby, etc.
 * Elixir: mpmt1.exs
     * Just worked version. Thread mode only at the moment.
+    * Install elixir (tested on Ubuntu 22.04 bundled 1.12.2 w/Erlang 24.2.1)
 * Haskell: mpmt1.hs
     * Thread mode (using forkIO) only at the moment.
-    * Install GHC.
-    * Does not implement getopt yet. Current usage is below:
+    * Install GHC (tested on Ubuntu 22.04 bundled 8.8.4)
+    * Does not implement getopt yet.
+    * Usage:
         * `$ ghc -threaded  -rtsopts mpmt1.hs -o mpmt1hs`
         * `$ ./mpmt1hs NUM_CONTEXT DURATION +RTS -Nn `
         * DURATION is in seconds, n of -N is number of platorm threads
 * Erlang: mpmt1.erl
-    * Thread mode only at the moment.
-    * Similar status with Haskell
-    * See comments in mpmt1.erl
+    * Thread mode only at the moment, similar status with Haskell
+    * Install Erlang/OTP at least 24 (tested on Ubuntu 22.04 bundled 24.2.1)
+    * Usage:
+      * `$ erlc mpmt1.erl`
+      * `$ erl -noshell -pa mpmt1.beam  -s mpmt1 start NUM_CTX DURATION -s init stop`
 * Java: java/
     * Thread mode only at the moment.
-    * Use at least JDK19 to see Virtual Thread feature. See java/README.md for the details.
+    * Install at least JDK19 to see Virtual Thread feature.
     * Usage
-        * `$ cd java && mvn clean package`
+        *  See java/README.md for the details
 * Pascal: mpmt1.pas
     * Thread mode only at the moment.
-    * Install FreePascal.
+    * Install FreePascal (tested on Ubuntu 22.04 bundled fpc 3.2.2)
     * Usage
         * `$ fpc -o mpmt1pas mpmt1.pas`
         * `$ ./mpmt1pas NUM_CONTEXT DURATION`
@@ -116,8 +128,8 @@ Common across languages.
     * Tested using Swift docker image swift-5.10-RELEASE
 
 ### TODO
-* Add some more languages. (C++, C#, WebAssembly(?), TypeScript, etc.)
-
+* Add some more languages. (Dart, C++, C#, WebAssembly(?), TypeScript, etc.)
+* Update some language implementations (Haskell/Erlang/...) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
 
