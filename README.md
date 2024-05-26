@@ -12,7 +12,7 @@ Here is the list of languages implemented.
 
 1. Python (thread/process)
 2. C (thread/process)
-3. Golang (goroutine(roughtly thread))
+3. Golang (goroutine(roughly thread))
 4. Rust (thread)
 5. Ruby (thread)
 6. Node.js (process)
@@ -72,11 +72,13 @@ Common across languages.
 * Ruby: mpmt1.rb
     * Implements thread mode only. No process mode at the moment.
 * Node.js: mpmt1.js
-    * Implements process mode only. No thread mode at the moment.
+    * Implements process mode only using cluster. No thread mode at the moment.
+        * https://nodejs.org/api/cluster.html
     * Tested using Ubuntu 22.04 bundled nodejs 12.22.9
     * Install 'posix-getopt'
     * TODO
         * Use worker-thread
+            * https://nodejs.org/api/worker_threads.html
 * Scala: mpmt1.scala
     * Implements thread mode only. No process mode at the moment.
     * In case of Ubuntu, use scala3.
