@@ -27,6 +27,7 @@ Here is the list of languages implemented.
 15. Java (thread)
 16. Pascal (thread)
 17. Swift (thread)
+18. C# (ASP.NET Core) (thread)
 
 ### Usage
 
@@ -128,9 +129,17 @@ Common across languages.
 * Swift: mpmt1.swift
     * Thread mode only at the moment.
     * Tested using Swift docker image swift-5.10-RELEASE
+* C# (ASP.NET Core): mpmt1/
+    * Thread mode only at the moment.
+    * Tested using docker image mcr.microsoft.com/dotnet/sdk:8.0
+    * Usage
+        * `$ cd dotnet`
+        * `$ dotnet restore`
+        * `$ dotnet build`
+    	* `$ bin/Debug/net8.0/mpmt1 NUM_CONTEXT DURATION`
 
 ### TODO
-* Add some more languages. (Dart, C++, C#, WebAssembly(?), TypeScript, etc.)
+* Add some more languages. (Dart, C++, WebAssembly(?), TypeScript, etc.)
 * Update some language implementations (Haskell/Erlang/...) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
