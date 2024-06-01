@@ -1,4 +1,4 @@
-# mpmt : Multi-Process Multi-Thread examples
+32;331;0c># mpmt : Multi-Process Multi-Thread examples
 
 This directory contains small example programs to see
 behaviour differences of multi-process and multi-thread programming model
@@ -28,6 +28,7 @@ Here is the list of languages implemented.
 16. Pascal (thread)
 17. Swift (thread)
 18. C# (ASP.NET Core) (thread)
+19. Dart (thread)
 
 ### Usage
 
@@ -137,9 +138,14 @@ Common across languages.
         * `$ dotnet restore`
         * `$ dotnet build`
     	* `$ bin/Debug/net8.0/mpmt1 NUM_CONTEXT DURATION`
+* Dart
+    * Thread mode only at the moment.
+    * Tested using docker image dart:3.4.0-sdk
+    * `$ dart pub get`
+    * `$ dart mpmt1.dart NUM_CONTEXT (number of threads) DURATION (in sec.)`
 
 ### TODO
-* Add some more languages. (Dart, C++, WebAssembly(?), TypeScript, etc.)
+* Add some more languages. (C++, OCaml, D, WebAssembly, TypeScript, etc.)
 * Update some language implementations (Haskell/Erlang/...) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
