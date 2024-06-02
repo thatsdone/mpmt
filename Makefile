@@ -13,4 +13,4 @@ scala:
 haskell:
 	ghc -threaded -rtsopts -o mpmt1hs mpmt1.hs
 clean:
-	/bin/rm -f *~ *.o mpmt1rs mpmt1c mpmt1go  *.class *.tasty *.dump *.beam mpmt1hs mpmt1.hi mpmt1pas
+	/bin/rm -f *~ *.o mpmt1rs mpmt1c mpmt1go  *.class *.tasty *.dump *.beam mpmt1hs mpmt1.hi mpmt1pas mpmt1cpp
