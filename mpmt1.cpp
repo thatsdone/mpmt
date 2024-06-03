@@ -20,7 +20,6 @@
 #include <list>
 #include <unistd.h>
 
-using namespace std;
 using namespace std::chrono;
 
 void busy_worker(uint64_t duration_ms) {
@@ -29,7 +28,10 @@ void busy_worker(uint64_t duration_ms) {
   while (true) {
     uint64_t current_ts = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
     if (current_ts - start_ts >= duration_ms) {
-      cout << "Expired."  << endl;
+      //Looks like "Expired." and endl below are separatedly send to stdout.
+      //std::cout << "Expired."  << std::endl;
+      //Atomic output preferred.
+      printf("Expired.\n");
       return;
     }
   }
@@ -39,25 +41,26 @@ void busy_worker(uint64_t duration_ms) {
 int main(int argc, char **argv){
   int num_context = 3;
   int duration = 5;
-  list<thread>tlist;
+  std::list<std::thread>tlist;
 
   if (argc >= 2) {
-    num_context = stoi(argv[1]);
+    num_context = std::stoi(argv[1]);
   }
   if (argc >= 3) {
-    duration = stoi(argv[2]);
+    duration = std::stoi(argv[2]);
   }
-  printf("num_context: %d duration: %d\n", num_context, duration);
+  //printf("num_context: %d duration: %d\n", num_context, duration);
+  std::cout << "num_context: " << num_context << " duration: " << duration << std::endl;
 
   for (int i = 0; i < num_context; i++) {
-    thread t = thread(busy_worker, duration * 1000);
+    std::thread t = std::thread(busy_worker, duration * 1000);
+    std::cout << "created thread...: " << t.get_id() << std::endl;
     tlist.push_back(std::move(t));
   }
-  //sleep(duration + 1);
 
-  std::list<thread>::iterator it;
+  std::list<std::thread>::iterator it;
   for (it = tlist.begin(); it != tlist.end(); ++it){
-    //cout << "joining..." << endl;
+    std::cout << "joining thread...: " << (*it).get_id() << std::endl;
     (*it).join();
   }
   return 0;
