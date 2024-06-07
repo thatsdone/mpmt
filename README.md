@@ -77,11 +77,11 @@ Common across languages.
 * Node.js: mpmt1.js
     * Implements process mode only using cluster. No thread mode at the moment.
         * https://nodejs.org/api/cluster.html
-    * Tested using Ubuntu 22.04 bundled nodejs 12.22.9
-    * Install 'posix-getopt'
+    * Tested using docker image tagged: hydrogen-bullseye-slim (v18.16.0)
     * TODO
         * Use worker-thread
             * https://nodejs.org/api/worker_threads.html
+            * https://nodejs.org/api/async_context.html
 * Scala: mpmt1.scala
     * Implements thread mode only. No process mode at the moment.
     * In case of Ubuntu, use scala3.
