@@ -77,7 +77,7 @@ Common across languages.
 * Node.js: mpmt1.js
     * Implements process mode only using cluster. No thread mode at the moment.
         * https://nodejs.org/api/cluster.html
-    * Tested using docker image tagged: hydrogen-bullseye-slim (v18.16.0)
+    * Tested using docker image tagged: iron-bullseye-slim (v20.14.0)
     * TODO
         * Use worker-thread
             * https://nodejs.org/api/worker_threads.html
