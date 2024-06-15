@@ -22,13 +22,13 @@ function busy_worker(timeout) {
     var max = timeout * 1000
 
     while (true) {
-	ts = Date.now()
-	if ((ts - ts_save) >= max) {
-	    console.log('Expired! ' + (ts - ts_save))
-	    break
-	}
+        ts = Date.now()
+        if ((ts - ts_save) >= max) {
+            console.log('Expired! ' + (ts - ts_save))
+            break
+        }
     }
-    process.exit(123)
+    process.exit(0)
 }
 
 
@@ -41,33 +41,37 @@ var num_context = 4
 var duration = 10
 var mode = 'p'
 
-parser = new posix_getopt.BasicParser('n:d:m', process.argv)
+parser = new posix_getopt.BasicParser('n:d:m:', process.argv)
 while ((option = parser.getopt()) !== undefined) {
     switch (option.option) {
     case 'n':
-	num_context = option.optarg
-	break;
+        num_context = option.optarg
+        break;
     case 'd':
-	duration = option.optarg
-	break;
+        duration = option.optarg
+        break;
     case 'm':
-	mode = option.optarg
-	break;
+        mode = option.optarg
+        break;
     }
 }
 
 
 //isPrimary does not work for Node.js v10.19.0?
 if (cluster.isMaster) {
-    console.log('parent: pid= ' + process.pid)
     console.log('num_context: ' + num_context + ' duration: ' + duration)
+    console.log('parent: pid= ' + process.pid)
+    if (mode != 'p') {
+        console.log('-m options is not supported yet.')
+    }
+
     for (var i = 0; i < num_context; i++) {
-	cluster.fork()
+        cluster.fork()
     }
 
     cluster.on('exit', (code, signal) => {
-	// signal is the value for process.exit()? node code?
-	console.log('on exit called. code= ' + code + ' signal= ' + signal)
+    // signal is the value for process.exit()? node code?
+    console.log('on exit called. code= ' + code + ' signal= ' + signal)
     });
 
 } else {
