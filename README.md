@@ -15,7 +15,7 @@ Here is the list of languages implemented.
 3. Golang (goroutine(roughly thread))
 4. Rust (thread)
 5. Ruby (thread)
-6. Node.js (process)
+6. Node.js (process/thread)
 7. Scala (thread)
 8. Lua (coroutine)
 9. Common Lisp (thread)
@@ -75,13 +75,10 @@ Common across languages.
 * Ruby: mpmt1.rb
     * Implements thread mode only. No process mode at the moment.
 * Node.js: mpmt1.js
-    * Implements process mode only using cluster. No thread mode at the moment.
+    * Uses 'cluster' for process mode, 'worker_thread' for process mode.
         * https://nodejs.org/api/cluster.html
+        * https://nodejs.org/api/worker_threads.html
     * Tested using docker image tagged: iron-bullseye-slim (v20.14.0)
-    * TODO
-        * Use worker-thread
-            * https://nodejs.org/api/worker_threads.html
-            * https://nodejs.org/api/async_context.html
 * Scala: mpmt1.scala
     * Implements thread mode only. No process mode at the moment.
     * In case of Ubuntu, use scala3.

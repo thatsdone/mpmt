@@ -1,18 +1,13 @@
-/*
-# -*- coding: utf-8 -*-
-#
-# mpmt1.rb: A Node.js version of mpmt1.py
-#
-# License:
-#   Apache License, Version 2.0
-# History:
-#   * 2021/12/30 v0.1 Initial version
-# Author:
-#   Masanori Itoh <masanori.itoh@gmail.com>
-# TODO:
-#   * Investigate multi-thread feature of Node.js
-#   * Add options by using getopt
-*/
+// mpmt1.js: A Node.js version of mpmt1.py
+//
+//License:
+//  Apache License, Version 2.0
+//History:
+//  * 2021/12/30 v0.1 Initial version
+//Author:
+//  Masanori Itoh <masanori.itoh@gmail.com>
+//TODO:
+//  * Implement async mode(?)
 
 function busy_worker(timeout) {
 
@@ -28,7 +23,9 @@ function busy_worker(timeout) {
             break
         }
     }
-    process.exit(0)
+    if (mode == 'p') {
+        process.exit(0)
+    }
 }
 
 
@@ -57,25 +54,42 @@ while ((option = parser.getopt()) !== undefined) {
 }
 
 
-//isPrimary does not work for Node.js v10.19.0?
-if (cluster.isMaster) {
-    console.log('num_context: ' + num_context + ' duration: ' + duration)
-    console.log('parent: pid= ' + process.pid)
-    if (mode != 'p') {
-        console.log('-m options is not supported yet.')
+if (mode == 'p') {
+    //Process mode (cluster)
+    if (cluster.isMaster) {
+        console.log('num_context: ' + num_context + ' duration: ' + duration + ' mode: ' + mode)
+        console.log('parent: pid= ' + process.pid)
+
+        for (var i = 0; i < num_context; i++) {
+            cluster.fork()
+        }
+
+        cluster.on('exit', (code, signal) => {
+            // signal is the value for process.exit()? node code?
+            console.log('on exit called. code= ' + code + ' signal= ' + signal)
+        });
+
+    } else {
+        console.log('child: pid=' + process.pid)
+        busy_worker(duration)
     }
-
-    for (var i = 0; i < num_context; i++) {
-        cluster.fork()
-    }
-
-    cluster.on('exit', (code, signal) => {
-    // signal is the value for process.exit()? node code?
-    console.log('on exit called. code= ' + code + ' signal= ' + signal)
-    });
-
 } else {
-    console.log('child: pid=' + process.pid)
-    busy_worker(duration)
-}
-
+    //Thread mode (worker_thread)
+    const {
+        Worker,
+        isMainThread,
+        //parentPort,
+    } = require("worker_threads");
+    
+    if (isMainThread) {
+        console.log('num_context: ' + num_context + ' duration: ' + duration + ' mode: ' + mode)
+        const threads = [];
+        for (var i = 0; i < num_context; i++) {
+            const worker = new Worker(__filename, {argv: process.argv.slice(2)});
+            threads.push(worker)
+        }
+        //TODO(thatsdone): Implement join() equivalent for synchronization
+    } else {
+        busy_worker(duration)
+    } 
+}    
