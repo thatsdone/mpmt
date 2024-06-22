@@ -15,31 +15,27 @@
 -- TODO:
 --   * Use Getopt
 --   * Implement main and busy_workers synchronization using channel
---
+--     * https://github.com/crabmusket/haskell-simple-concurrency
 import Data.Time.Clock.POSIX (getPOSIXTime, getCurrentTime)
 import System.Environment
+import Control.Monad
 import Control.Concurrent
 import Text.Printf
 
 t mul = round . (mul *) <$> getPOSIXTime
 
-busy_loop current time_left = do
+busyLoop current time_left = do
   if time_left > 0 then
     do
       now  <- t 1000
       let elapse = now - current
-      busy_loop now  (time_left - elapse)
+      busyLoop now  (time_left - elapse)
   else print "Expired."
 
-busy_worker duration = do
+busyWorker idx duration = do
+  printf "busyWorker: idx: %d\n"  idx
   now  <- t 1000
-  busy_loop now duration
-
-create_busy_worker 0 duration = return ()
-create_busy_worker n duration =
-  do
-    forkIO $ busy_worker duration
-    create_busy_worker (n - 1) duration
+  busyLoop now duration
 
 main = do
 
@@ -50,8 +46,9 @@ main = do
   let duration = if not (null args)
                  then (read  (args !! 1)  :: Int) * 1000 else 5000
 
-  printf "duration: %d (ms) num_context: %d\n"  duration num_context
+  printf "num_context: %d duration: %d (ms)\n"  num_context duration
 
-  create_busy_worker  num_context duration
+  forM_ [1..num_context] $ \i -> do
+    forkIO $ busyWorker i duration
 
   threadDelay $ duration * 1000
