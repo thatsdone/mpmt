@@ -109,7 +109,7 @@ Common across languages.
         * `$ ./mpmt1hs NUM_CONTEXT DURATION +RTS -Nn `
         * DURATION is in seconds, n of -N is number of platorm threads
 * Erlang: mpmt1.erl
-    * Thread mode only at the moment, similar status with Haskell
+    * Thread mode only at the moment.
     * Install Erlang/OTP at least 24 (tested on Ubuntu 22.04 bundled 24.2.1)
     * Usage:
       * `$ erlc mpmt1.erl`
@@ -149,7 +149,7 @@ Common across languages.
 
 ### TODO
 * Add some more languages. (OCaml, D, WebAssembly, TypeScript, etc.)
-* Update some language implementations (Haskell/Erlang/...) to use message passing mechanism for synchronizing main/worker threads.
+* Update some language implementations (Erlang/...) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
 

@@ -14,28 +14,29 @@
 ---  use requested multi cores fully.
 -- TODO:
 --   * Use Getopt
---   * Implement main and busy_workers synchronization using channel
---     * https://github.com/crabmusket/haskell-simple-concurrency
+--   * Implement Process model
 import Data.Time.Clock.POSIX (getPOSIXTime, getCurrentTime)
 import System.Environment
 import Control.Monad
 import Control.Concurrent
+import Control.Concurrent.Chan (newChan, writeChan, readChan)
 import Text.Printf
 
 t mul = round . (mul *) <$> getPOSIXTime
 
 busyLoop current time_left = do
-  if time_left > 0 then
-    do
+  when (time_left > 0)
+    $ do
       now  <- t 1000
       let elapse = now - current
       busyLoop now  (time_left - elapse)
-  else print "Expired."
 
-busyWorker idx duration = do
-  printf "busyWorker: idx: %d\n"  idx
+busyWorker idx duration worker_chan = do
+  printf "busyWorker: starting. idx: %d\n"  idx
   now  <- t 1000
   busyLoop now duration
+  writeChan worker_chan idx
+  printf "busyWorker: expired. idx: %d\n"  idx
 
 main = do
 
@@ -48,7 +49,11 @@ main = do
 
   printf "num_context: %d duration: %d (ms)\n"  num_context duration
 
-  forM_ [1..num_context] $ \i -> do
-    forkIO $ busyWorker i duration
+  worker_chan <- newChan
 
-  threadDelay $ duration * 1000
+  forM_ [1..num_context] $ \i -> do
+    forkIO $ busyWorker i duration worker_chan
+
+  forM_ [1..num_context] $ \i -> do
+    ret <- readChan worker_chan
+    printf "main: worker exit. idx: %d\n" ret
