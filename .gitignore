@@ -8,3 +8,4 @@
 *.class
 java/target
 .dart_tool/
+node_modules/
