@@ -30,6 +30,7 @@ Here is the list of languages implemented.
 18. C# (ASP.NET Core) (thread)
 19. Dart (thread)
 20. C++ (thread)
+21. OCaml (thread)
 
 ### Usage
 
@@ -146,10 +147,14 @@ Common across languages.
     * Tested using GNU C++ 11.4.0
     * `$ g++ -o mpmt1cpp mpmt1.cpp`
     * `$ ./mpmt1cpp NUM_CONTEXT (number of threads) DURATION (in sec.)`
+* OCaml
+    * Thread mode only at the moment.
+    * Very early stage. Need to replace Thread by Domain for parallelism.
+    * Under development using docker image:  ocaml/opam:debian-11-ocaml-5.3
 
 ### TODO
-* Add some more languages. (OCaml, D, WebAssembly, TypeScript, etc.)
-* Update some language implementations (Erlang/...) to use message passing mechanism for synchronizing main/worker threads.
+* Add some more languages. (WebAssembly, TypeScript, D, etc.)
+* Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
 
