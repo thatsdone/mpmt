@@ -6,9 +6,21 @@ frameworks of various languages/runtimes.
 
 ## 1. A simple busy loop workload generator
 
-Run executables on a server at least 2 (v)CPUs, and observe CPU usage using top command for example. (Better to refresh frequently using '-d 1'.) You would see that in some languages such as python threading model can consume only 1 CPU (100%) even if there are multiple CPUs and you specifed more than 2 contexts.
+mpmt1 series is a simple CPU load generator using multi-thread or multi-process
+models in various languages.
 
-Here is the list of languages implemented.
+Basically, the main routine creates specified number of threads/processes, and
+the workers does busy loop just getting timestamp and checking if specified
+duration have passed.
+
+Run programs on a server at least 2 (v)CPUs,
+and observe CPU usage using top command for example.
+(Better to refresh frequently using '-d 1'.)
+You would see that in some languages such as python threading model
+can consume only 1 CPU (100%)
+even if there are multiple CPUs and you specifed more than 2 contexts.
+
+Here is the list of languages implemented so far.
 
 1. Python (thread/process)
 2. C (thread/process)
@@ -106,7 +118,7 @@ Common across languages.
     * Install GHC (tested on Ubuntu 22.04 bundled 8.8.4)
     * Does not implement getopt yet.
     * Usage:
-        * `$ ghc -threaded  -rtsopts mpmt1.hs -o mpmt1hs`
+        * `make haskell`
         * `$ ./mpmt1hs NUM_CONTEXT DURATION +RTS -Nn `
         * DURATION is in seconds, n of -N is number of platorm threads
 * Erlang: mpmt1.erl
@@ -129,7 +141,7 @@ Common across languages.
 * Swift: mpmt1.swift
     * Thread mode only at the moment.
     * Tested using Swift docker image swift-5.10-RELEASE
-* C# (ASP.NET Core): mpmt1/
+* C# (ASP.NET Core): dotnet/
     * Thread mode only at the moment.
     * Tested using docker image mcr.microsoft.com/dotnet/sdk:8.0
     * Usage
@@ -137,7 +149,7 @@ Common across languages.
         * `$ dotnet restore`
         * `$ dotnet build`
     	* `$ bin/Debug/net8.0/mpmt1 NUM_CONTEXT DURATION`
-* Dart
+* Dart: dart/
     * Thread mode only at the moment.
     * Tested using docker image dart:3.4.0-sdk
     * `$ dart pub get`
@@ -147,7 +159,7 @@ Common across languages.
     * Tested using GNU C++ 11.4.0
     * `$ g++ -o mpmt1cpp mpmt1.cpp`
     * `$ ./mpmt1cpp NUM_CONTEXT (number of threads) DURATION (in sec.)`
-* OCaml
+* OCaml: mpmt1.ml
     * Thread mode only at the moment.
     * Very early stage. Need to replace Thread by Domain for parallelism.
     * Under development using docker image:  ocaml/opam:debian-11-ocaml-5.3
