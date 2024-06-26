@@ -49,9 +49,21 @@ fn main() {
 //        Err(f) => { println!("{}", f.to_err_msg()); return; }
 //    };
     let matches = opts.parse(&args[1..]).unwrap_or_else(|f| panic!("{}", f.to_string()));
-    let num_context: i32 = matches.opt_strs("n")[0].parse::<i32>().unwrap();
-    let duration: i32 = matches.opt_strs("d")[0].parse::<i32>().unwrap();
-    let mode = &matches.opt_strs("m")[0];
+    let num_context: i32 =  if matches.opt_present("n") {
+        matches.opt_strs("n")[0].parse::<i32>().unwrap()        
+    } else {
+        3
+    };
+    let duration: i32 = if matches.opt_present("d") {
+        matches.opt_strs("d")[0].parse::<i32>().unwrap()
+    } else {
+        5
+    };
+    let mode = if matches.opt_present("m") {
+        &matches.opt_strs("m")[0]
+    } else {
+        "t"
+    };
 
     println!("num_context: {}, duration: {}, mode: {}", num_context, duration, mode);
 
