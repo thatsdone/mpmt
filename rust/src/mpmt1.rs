@@ -13,12 +13,16 @@
 
 #![feature(rustc_private)]
 extern crate getopts;
+extern crate nix;
+use nix::unistd::{fork, ForkResult};
+use nix::sys::wait::waitpid;
+
 use getopts::Options;
 use std::env;
 use std::thread;
 use std::time::SystemTime;
 use std::convert::TryInto;
-
+use std::process::exit;
 
 fn worker(id: i32, duration: i32) {
     let ts_save = SystemTime::now();
@@ -44,10 +48,7 @@ fn main() {
     opts.optmulti("n", "", "number of contexts", "NUM_CONTEXT");
     opts.optmulti("d", "", "duration", "DURATION");
     opts.optmulti("m", "", "mode", "t(hread)");
-//    let matches = match opts.parse(&args[1..]) {
-//        Ok(m) => { m },
-//        Err(f) => { println!("{}", f.to_err_msg()); return; }
-//    };
+
     let matches = opts.parse(&args[1..]).unwrap_or_else(|f| panic!("{}", f.to_string()));
     let num_context: i32 =  if matches.opt_present("n") {
         matches.opt_strs("n")[0].parse::<i32>().unwrap()        
@@ -69,16 +70,39 @@ fn main() {
 
     let mut handles: Vec<thread::JoinHandle<()>> = Vec::new();
 
-    for i in 0..num_context {
-        println!("main: creating {} th thread.", i);
-        let thread = thread::spawn(move || {
-	    worker(i, duration)
-	});
-        handles.push(thread);
-    }
+    let mut processes: Vec<nix::unistd::Pid> = Vec::new();
 
-    for thread in handles.into_iter() {
-        thread.join().unwrap();
+    if mode == "t" {
+        for i in 0..num_context {
+            println!("main: creating {} th thread.", i);
+            let thread = thread::spawn(move || {
+	            worker(i, duration)
+	        });
+            handles.push(thread);
+        }
+        for thread in handles.into_iter() {
+            thread.join().unwrap();
+        }
+
+    } else {
+        for i in 0..num_context {
+            match unsafe{fork()} {
+                Ok(ForkResult::Parent {child, ..}) => {
+                    println!("parent: created {} th child pid: {}", i, child);
+                    processes.push(child);
+                }
+                Ok(ForkResult::Child) => {
+	                worker(i, duration);
+                    exit(i)
+                },
+                Err(_) => println!("fork failed."),
+            }
+        }
+
+        for pid in processes.iter_mut() {
+            waitpid(*pid, None).unwrap();
+            println!("parent, waitpid returned: pid: {}", pid);
+        }
     }
 }
 

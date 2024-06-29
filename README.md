@@ -25,7 +25,7 @@ Here is the list of languages implemented so far.
 1. Python (thread/process)
 2. C (thread/process)
 3. Golang (goroutine(roughly thread))
-4. Rust (thread)
+4. Rust (thread/process)
 5. Ruby (thread)
 6. Node.js (process/thread)
 7. Scala (thread)
@@ -75,16 +75,18 @@ Common across languages.
     * `make c`
     * `./mpmt1c`
 * Go: mpmt1.go
-    * Uses goroutine. No process mode at the moment.
+    * Uses goroutine. No process mode.
     * Usage
         * `go run mpmt1.go` or
         * `make go && ./mpmt1go`
-* Rust: mpmt1.rs
-    * Implements thread mode only. No process mode at the moment.
-    * Use nightly tool chain as this uses 'crate'.
+* Rust: rust/
+    * Uses nix crate for multi-process model
     * Usage
-        * `make rust`
-        * `./mpmt1rs`
+        * `cd rust`
+        * `cargo run [-- [-m (t|p)] [-n NUM_CONTEXT] [-d DURATION]]`
+    * Note
+        * Cargo.toml contains the workaround below:
+            * https://github.com/rust-lang/rust-analyzer/issues/15798
 * Ruby: mpmt1.rb
     * Implements thread mode only. No process mode at the moment.
 * Node.js: mpmt1.js
