@@ -32,11 +32,11 @@ fn worker(id: i32, duration: i32) {
 
     let mut diff: u128;
     loop {
-	let ts = SystemTime::now();
-	diff = ts.duration_since(ts_save).unwrap().as_micros();
-	if diff >= max {
-	   break;
-	}
+        let ts = SystemTime::now();
+        diff = ts.duration_since(ts_save).unwrap().as_micros();
+        if diff >= max {
+            break;
+        }
     }
     println!("worker: {} exiting... duration: {:?} (us)", id, diff);
 }
@@ -68,16 +68,13 @@ fn main() {
 
     println!("num_context: {}, duration: {}, mode: {}", num_context, duration, mode);
 
-    let mut handles: Vec<thread::JoinHandle<()>> = Vec::new();
-
-    let mut processes: Vec<nix::unistd::Pid> = Vec::new();
-
     if mode == "t" {
+        let mut handles: Vec<thread::JoinHandle<()>> = Vec::new();
         for i in 0..num_context {
             println!("main: creating {} th thread.", i);
             let thread = thread::spawn(move || {
-	            worker(i, duration)
-	        });
+                worker(i, duration)
+            });
             handles.push(thread);
         }
         for thread in handles.into_iter() {
@@ -85,6 +82,7 @@ fn main() {
         }
 
     } else {
+        let mut processes: Vec<nix::unistd::Pid> = Vec::new();
         for i in 0..num_context {
             match unsafe{fork()} {
                 Ok(ForkResult::Parent {child, ..}) => {
@@ -92,17 +90,15 @@ fn main() {
                     processes.push(child);
                 }
                 Ok(ForkResult::Child) => {
-	                worker(i, duration);
+                    worker(i, duration);
                     exit(i)
                 },
                 Err(_) => println!("fork failed."),
             }
         }
-
         for pid in processes.iter_mut() {
             waitpid(*pid, None).unwrap();
-            println!("parent, waitpid returned: pid: {}", pid);
+            println!("parent: waitpid returned: pid: {}", pid);
         }
     }
 }
-
