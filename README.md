@@ -85,8 +85,8 @@ Common across languages.
         * `cd rust`
         * `cargo run [-- [-m (t|p)] [-n NUM_CONTEXT] [-d DURATION]]`
     * Note
-        * Cargo.toml contains the workaround below:
-            * https://github.com/rust-lang/rust-analyzer/issues/15798
+        * nix crate need to enable necessary features explicitly.
+            * https://lib.rs/crates/nix/features
 * Ruby: mpmt1.rb
     * Implements thread mode only. No process mode at the moment.
 * Node.js: mpmt1.js
