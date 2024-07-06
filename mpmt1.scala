@@ -14,7 +14,7 @@
  */
 
 //break requires scala 2.8 or later.
-//import scala.util.control.Breaks._
+import scala.util.control.Breaks._
 
 object mpmt1 {
   def main(args: Array[String]) = {
@@ -78,11 +78,20 @@ class BusyWorker(num_context: Int, duration: Int) extends Runnable {
     val max = duration * 1000
 
     //Don't use Scala3 syntax for now.
+    /**
     while ({
       ts = System.currentTimeMillis()
       (ts - ts_save) <= max
     }) ()
-    //BTW, Scala does not have 'break'
+    // The above () or {} is necessary.
+    */
+    //Use scala.util.controk.Breaks for 'break'
+    breakable {
+      while (true) {
+        ts = System.currentTimeMillis()
+        if ((ts - ts_save) > max) break;
+      }
+    }
     println("Expired! " + (ts - ts_save))
   }
 }
