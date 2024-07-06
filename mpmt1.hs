@@ -15,7 +15,7 @@
 -- TODO:
 --   * Use Getopt
 --   * Implement Process model
-import Data.Time.Clock.POSIX (getPOSIXTime, getCurrentTime)
+import Data.Time.Clock.POSIX (getPOSIXTime)
 import System.Environment
 import Control.Monad
 import Control.Concurrent
@@ -45,14 +45,14 @@ main = do
   let num_context = if length args >= 2
                     then (read  (head args) :: Int) else 4
   let duration = if not (null args)
-                 then (read  (args !! 1)  :: Int) * 1000 else 5000
+                 then (read  (args !! 1)  :: Int) else 5
 
-  printf "num_context: %d duration: %d (ms)\n"  num_context duration
+  printf "num_context: %d duration: %d (s)\n"  num_context duration
 
   worker_chan <- newChan
 
   forM_ [1..num_context] $ \i -> do
-    forkIO $ busyWorker i duration worker_chan
+    forkIO $ busyWorker i (duration * 1000) worker_chan
 
   forM_ [1..num_context] $ \i -> do
     ret <- readChan worker_chan
