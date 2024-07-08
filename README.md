@@ -43,6 +43,7 @@ Here is the list of languages implemented so far.
 19. Dart (thread)
 20. C++ (thread)
 21. OCaml (thread)
+21. Zig (thread)
 
 ### Usage
 
@@ -165,6 +166,10 @@ Common across languages.
     * Thread mode only at the moment.
     * Very early stage. Need to replace Thread by Domain for parallelism.
     * Under development using docker image:  ocaml/opam:debian-11-ocaml-5.3
+* Zig mpmt1.zig
+    * Thread mode only at the moment.
+    * `$ zig run mpmt1.zig -- NUM_CONTEXT DURATION (in sec.)`
+    * Written for WASM experment (TBD) originally.
 
 ### TODO
 * Add some more languages. (WebAssembly, TypeScript, D, etc.)
