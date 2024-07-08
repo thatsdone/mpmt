@@ -169,7 +169,7 @@ Common across languages.
 * Zig mpmt1.zig
     * Thread mode only at the moment.
     * `$ zig run mpmt1.zig -- NUM_CONTEXT DURATION (in sec.)`
-    * Written for WASM experment (TBD) originally.
+    * Written for WASM experiment (TBD) originally.
 
 ### TODO
 * Add some more languages. (WebAssembly, TypeScript, D, etc.)
