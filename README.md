@@ -1,8 +1,8 @@
 # mpmt : Multi-Process Multi-Thread examples
 
-This directory contains small example programs to see
+This repository contains small example programs to see
 behaviour differences of multi-process and multi-thread programming model
-frameworks of various languages/runtimes.
+framework of various languages/runtimes.
 
 ## 1. A simple busy loop workload generator
 
