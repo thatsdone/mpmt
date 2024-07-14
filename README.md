@@ -170,6 +170,7 @@ Common across languages.
     * Thread mode only at the moment.
     * `$ zig run mpmt1.zig -- NUM_CONTEXT DURATION (in sec.)`
     * Written for WASM experiment (TBD) originally.
+        * TODO: Create .wasm from mpmt1.zig and run it using wasmtime
 
 ### TODO
 * Add some more languages. (WebAssembly, TypeScript, D, etc.)
