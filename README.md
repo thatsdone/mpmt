@@ -44,6 +44,7 @@ Here is the list of languages implemented so far.
 20. C++ (thread)
 21. OCaml (thread)
 21. Zig (thread)
+22. Fortran (thread/OpenMP)
 
 ### Usage
 
@@ -157,7 +158,7 @@ Common across languages.
     * Tested using docker image dart:3.4.0-sdk
     * `$ dart pub get`
     * `$ dart mpmt1.dart NUM_CONTEXT (number of threads) DURATION (in sec.)`
-* C++
+* C++: mpmt1.cpp
     * Thread mode only at the moment.
     * Tested using GNU C++ 11.4.0
     * `$ g++ -o mpmt1cpp mpmt1.cpp`
@@ -166,11 +167,15 @@ Common across languages.
     * Thread mode only at the moment.
     * Very early stage. Need to replace Thread by Domain for parallelism.
     * Under development using docker image:  ocaml/opam:debian-11-ocaml-5.3
-* Zig mpmt1.zig
+* Zig: mpmt1.zig
     * Thread mode only at the moment.
     * `$ zig run mpmt1.zig -- NUM_CONTEXT DURATION (in sec.)`
     * Written for WASM experiment (TBD) originally.
         * TODO: Create .wasm from mpmt1.zig and run it using wasmtime
+* Fortran 2008: mpmt1.f08
+    * Thread mode via OpenMP only at the moment.
+    * Install libgomp1 (in case of Ubuntu)
+    * `$ gfortran mpmt1.f08 -o mpmt1f08 -fopenmp [NUM_CONTEXT [DURATION]]`
 
 ### TODO
 * Add some more languages. (WebAssembly, TypeScript, D, etc.)
