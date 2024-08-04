@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 		case 'n':
 			num_context = atoi(optarg);
 			if (num_context > MAX_CONTEXT) {
-				printf("%s: -n too big. %d\n", argv[0], num_context);
+				printf("%s: -n too big. %d (<= %d)\n", argv[0], num_context, MAX_CONTEXT);
 				exit(-1);
 			}
 			break;
