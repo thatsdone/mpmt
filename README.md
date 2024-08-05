@@ -175,10 +175,11 @@ Common across languages.
 * Fortran 2008: mpmt1.f08
     * Thread mode via OpenMP only at the moment.
     * Install libgomp1 (in case of Ubuntu)
-    * `$ gfortran mpmt1.f08 -o mpmt1f08 -fopenmp [NUM_CONTEXT [DURATION]]`
+    * `$ gfortran mpmt1.f08 -o mpmt1f08 -fopenmp`
+    * `$ ./mpmt1f08 [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
 
 ### TODO
-* Add some more languages. (WebAssembly, TypeScript, D, etc.)
+* Add some more languages. (WebAssembly, Ada, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
