@@ -179,7 +179,7 @@ Common across languages.
     * `$ ./mpmt1f08 [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
 
 ### TODO
-* Add some more languages. (Mojo, WebAssembly, Ada etc.)
+* Add some more languages. (Mojo, WebAssembly, Ada, Vala etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
