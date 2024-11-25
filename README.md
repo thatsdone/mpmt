@@ -45,6 +45,7 @@ Here is the list of languages implemented so far.
 21. OCaml (thread)
 21. Zig (thread)
 22. Fortran (thread/OpenMP)
+23. Ada(thread)
 
 ### Usage
 
