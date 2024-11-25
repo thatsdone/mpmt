@@ -177,9 +177,14 @@ Common across languages.
     * Install libgomp1 (in case of Ubuntu)
     * `$ gfortran mpmt1.f08 -o mpmt1f08 -fopenmp`
     * `$ ./mpmt1f08 [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
+* Ada: mpmt1.adb
+    * Thread mode only at the moment.
+    * Install gnat in case of Ubuntu
+    * `$ gnatmake mpmt1.adb -o mpmt1adb` or`make ada`
+    * `$ ./mpmt1adb [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
 
 ### TODO
-* Add some more languages. (Mojo, WebAssembly, Ada, Vala etc.)
+* Add some more languages. (Mojo, WebAssembly, Vala etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
