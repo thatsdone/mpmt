@@ -10,18 +10,8 @@
 --
 --  gnatmake mpmt1.adb -o mpmt1adb
 --
--- * https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/building_executable_programs_with_gnat.html
--- * https://learn.adacore.com/courses/intro-to-ada/chapters/standard_library_dates_times.html#date-and-time-handling
--- * https://stackoverflow.com/questions/34239915/how-to-get-seconds-since-unix-epoch-in-ada
--- * https://github.com/gcc-mirror/gcc/blob/master/gcc/ada/libgnat/a-calcon.ads
---
--- * variable number of tasks
---   * https://stackoverflow.com/questions/16999698/ada-multiple-tasks
--- * argc/argv
---   * https://stackoverflow.com/questions/14491899/command-line-arguments-for-ada
--- * https://learn.adacore.com/courses/intro-to-ada/chapters/tasking.html#simple-task
--- * multi-task
---   https://stackoverflow.com/questions/16999698/ada-multiple-tasks
+-- TODO
+-- * Look for dynamic thread(task) creation syntax like pthread_create().
 --
 with Ada.Text_IO; use ADA.Text_IO;
 with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
@@ -66,10 +56,13 @@ procedure mpmt1 is
     --
     -- variables
     --
+    -- Here we get default or given values as command line arguments
+    -- via a function, ParseArgIdx(), because here cannot be statements
+    --  such as 'if' clause as this is declare block.
     num_context : Integer := ParseArgIdx(1);
     duration : Integer := ParseArgIdx(2);
     --
-    -- task definition
+    -- task declaration
     --
     task type worker_tasks;
     task body worker_tasks is
@@ -81,5 +74,8 @@ procedure mpmt1 is
 
 begin
     Put_Line("num_context: " & Integer'Image(num_context) & " duration: " & Integer'Image(duration));
+    --
+    -- If the above message does not exist, the below 'null;' is necessary.
+    --
     --null;
 end mpmt1;
