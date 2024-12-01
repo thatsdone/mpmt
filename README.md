@@ -46,6 +46,7 @@ Here is the list of languages implemented so far.
 21. Zig (thread)
 22. Fortran (thread/OpenMP)
 23. Ada(thread)
+24. Vala(thread)
 
 ### Usage
 
@@ -183,9 +184,14 @@ Common across languages.
     * Install gnat in case of Ubuntu
     * `$ gnatmake mpmt1.adb -o mpmt1adb` or`make ada`
     * `$ ./mpmt1adb [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
+* Ada: mpmt1.vala
+    * Thread mode only at the moment.
+    * Install vala-bin (at least) in case of Ubuntu
+    * $ valac --pkg posix mpmt1.vala -o mpmt1vala`
+    * `$ ./mpmt1vala [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
 
 ### TODO
-* Add some more languages. (Mojo, WebAssembly, Vala etc.)
+* Add some more languages. (Mojo, WebAssembly, COBOL etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
