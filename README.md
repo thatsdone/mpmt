@@ -189,9 +189,13 @@ Common across languages.
     * Install vala-bin (at least) in case of Ubuntu
     * `$ valac --pkg posix mpmt1.vala -o mpmt1vala`
     * `$ ./mpmt1vala [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
+* AWK: mpmt1.awk
+    * Process mode only at the moment.
+    * Use gawk in case of Ubuntu
+    * `$ awk -f mpmt1.awk [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
 
 ### TODO
-* Add some more languages. (Mojo, WebAssembly, COBOL etc.)
+* Add some more languages. (Mojo, WebAssembly, COBOL, D, Tcl etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
