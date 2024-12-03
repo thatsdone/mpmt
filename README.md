@@ -184,10 +184,10 @@ Common across languages.
     * Install gnat in case of Ubuntu
     * `$ gnatmake mpmt1.adb -o mpmt1adb` or`make ada`
     * `$ ./mpmt1adb [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
-* Ada: mpmt1.vala
+* Vala: mpmt1.vala
     * Thread mode only at the moment.
     * Install vala-bin (at least) in case of Ubuntu
-    * $ valac --pkg posix mpmt1.vala -o mpmt1vala`
+    * `$ valac --pkg posix mpmt1.vala -o mpmt1vala`
     * `$ ./mpmt1vala [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
 
 ### TODO
