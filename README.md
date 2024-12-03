@@ -10,7 +10,7 @@ mpmt1 series is a simple CPU load generator using multi-thread or multi-process
 models in various languages.
 
 Basically, the main routine creates specified number of threads/processes, and
-the workers does busy loop just getting timestamp and checking if specified
+the workers do busy loop just repeating to get timestamp and check if specified
 duration have passed.
 
 Run programs on a server at least 2 (v)CPUs,
@@ -47,6 +47,7 @@ Here is the list of languages implemented so far.
 22. Fortran (thread/OpenMP)
 23. Ada(thread)
 24. Vala(thread)
+25. AWK(process)
 
 ### Usage
 
