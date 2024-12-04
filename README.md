@@ -43,12 +43,12 @@ Here is the list of languages implemented so far.
 19. Dart (thread)
 20. C++ (thread)
 21. OCaml (thread)
-21. Zig (thread)
-22. Fortran (thread/OpenMP)
-23. Ada (thread)
-24. Vala (thread)
-25. AWK (process)
-26. D (thread)
+22. Zig (thread)
+23. Fortran (thread/OpenMP)
+24. Ada (thread)
+25. Vala (thread)
+26. AWK (process)
+27. D (thread)
 
 ### Usage
 
