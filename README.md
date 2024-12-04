@@ -45,9 +45,10 @@ Here is the list of languages implemented so far.
 21. OCaml (thread)
 21. Zig (thread)
 22. Fortran (thread/OpenMP)
-23. Ada(thread)
-24. Vala(thread)
-25. AWK(process)
+23. Ada (thread)
+24. Vala (thread)
+25. AWK (process)
+26. D (thread)
 
 ### Usage
 
@@ -194,9 +195,14 @@ Common across languages.
     * Process mode only at the moment.
     * Use gawk in case of Ubuntu
     * `$ awk -f mpmt1.awk [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
+* D: mpmt1.d
+    * Thread mode only at the moment.
+    * I used DMD available at: https://dlang.org/download.html
+    * `$ rdmd mpmt1.d [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]` or
+    * `$ dmd  -of=mpmt1d  mpmt1.d` and `./mpmt1d [NUM_CONTEXT [DURATION]]`
 
 ### TODO
-* Add some more languages. (Mojo, WebAssembly, COBOL, D, Tcl etc.)
+* Add some more languages. (Mojo, WebAssembly, COBOL, Tcl, PHP, Bash, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
