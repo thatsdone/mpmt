@@ -134,7 +134,7 @@ Common across languages.
     * Install Erlang/OTP at least 24 (tested on Ubuntu 22.04 bundled 24.2.1)
     * Usage:
       * `$ erlc mpmt1.erl`
-      * `$ erl -noshell -pa mpmt1.beam  -s mpmt1 start NUM_CTX DURATION -s init stop`
+      * `$ erl -noshell -pa mpmt1.beam  -s mpmt1 start NUM_CONTEXT DURATION -s init stop`
 * Java: java/
     * Thread mode only at the moment.
     * Install at least JDK19 to see Virtual Thread feature.
@@ -145,7 +145,7 @@ Common across languages.
     * Install FreePascal (tested on Ubuntu 22.04 bundled fpc 3.2.2)
     * Usage
         * `$ fpc -o mpmt1pas mpmt1.pas`
-        * `$ ./mpmt1pas NUM_CONTEXT DURATION`
+        * `$ ./mpmt1pas [NUM_CONTEXT [DURATION]]`
 * Swift: mpmt1.swift
     * Thread mode only at the moment.
     * Tested using Swift docker image swift-5.10-RELEASE
@@ -156,49 +156,49 @@ Common across languages.
         * `$ cd dotnet`
         * `$ dotnet restore`
         * `$ dotnet build`
-    	* `$ bin/Debug/net8.0/mpmt1 NUM_CONTEXT DURATION`
+    	* `$ bin/Debug/net8.0/mpmt1 [NUM_CONTEXT [DURATION]]`
 * Dart: dart/
     * Thread mode only at the moment.
     * Tested using docker image dart:3.4.0-sdk
     * `$ dart pub get`
-    * `$ dart mpmt1.dart NUM_CONTEXT (number of threads) DURATION (in sec.)`
+    * `$ dart mpmt1.dart [NUM_CONTEXT [DURATION]]`
 * C++: mpmt1.cpp
     * Thread mode only at the moment.
     * Tested using GNU C++ 11.4.0
     * `$ g++ -o mpmt1cpp mpmt1.cpp`
-    * `$ ./mpmt1cpp NUM_CONTEXT (number of threads) DURATION (in sec.)`
+    * `$ ./mpmt1cpp [NUM_CONTEXT [DURATION]]`
 * OCaml: mpmt1.ml
     * Thread mode only at the moment.
     * Very early stage. Need to replace Thread by Domain for parallelism.
     * Under development using docker image:  ocaml/opam:debian-11-ocaml-5.3
 * Zig: mpmt1.zig
     * Thread mode only at the moment.
-    * `$ zig run mpmt1.zig -- NUM_CONTEXT DURATION (in sec.)`
+    * `$ zig run mpmt1.zig -- [NUM_CONTEXT [DURATION]]`
     * Written for WASM experiment (TBD) originally.
         * TODO: Create .wasm from mpmt1.zig and run it using wasmtime
 * Fortran 2008: mpmt1.f08
     * Thread mode via OpenMP only at the moment.
     * Install libgomp1 (in case of Ubuntu)
     * `$ gfortran mpmt1.f08 -o mpmt1f08 -fopenmp`
-    * `$ ./mpmt1f08 [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
+    * `$ ./mpmt1f08 [NUM_CONTEXT [DURATION]]`
 * Ada: mpmt1.adb
     * Thread mode only at the moment.
     * Install gnat in case of Ubuntu
     * `$ gnatmake mpmt1.adb -o mpmt1adb` or`make ada`
-    * `$ ./mpmt1adb [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
+    * `$ ./mpmt1adb [NUM_CONTEXT [DURATION]]`
 * Vala: mpmt1.vala
     * Thread mode only at the moment.
     * Install vala-bin (at least) in case of Ubuntu
     * `$ valac --pkg posix mpmt1.vala -o mpmt1vala`
-    * `$ ./mpmt1vala [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
+    * `$ ./mpmt1vala [NUM_CONTEXT [DURATION]]`
 * AWK: mpmt1.awk
     * Process mode only at the moment.
     * Use gawk in case of Ubuntu
-    * `$ awk -f mpmt1.awk [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]`
+    * `$ awk -f mpmt1.awk [NUM_CONTEXT [DURATION]]`
 * D: mpmt1.d
     * Thread mode only at the moment.
     * I used DMD available at: https://dlang.org/download.html
-    * `$ rdmd mpmt1.d [NUM_CONTEXT (number of threads) [DURATION (in sec.)]]` or
+    * `$ rdmd mpmt1.d [NUM_CONTEXT [DURATION]]` or
     * `$ dmd  -of=mpmt1d  mpmt1.d` and `./mpmt1d [NUM_CONTEXT [DURATION]]`
 
 ### TODO
