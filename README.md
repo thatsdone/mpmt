@@ -49,6 +49,7 @@ Here is the list of languages implemented so far.
 25. Vala (thread)
 26. AWK (process)
 27. D (thread)
+28. Tcl (thread)
 
 ### Usage
 
@@ -200,9 +201,12 @@ Common across languages.
     * I used DMD available at: https://dlang.org/download.html
     * `$ rdmd mpmt1.d [NUM_CONTEXT [DURATION]]` or
     * `$ dmd  -of=mpmt1d  mpmt1.d` and `./mpmt1d [NUM_CONTEXT [DURATION]]`
+* Tcl: mpmt1.tcl
+    * Thread mode only at the moment.
+    * `$ tclsh mpmt1.tcl [NUM_CONTEXT [DURATION]]`
 
 ### TODO
-* Add some more languages. (Mojo, WebAssembly, COBOL, Tcl, PHP, Bash, etc.)
+* Add some more languages. (Mojo, WebAssembly, COBOL, PHP, Bash, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
