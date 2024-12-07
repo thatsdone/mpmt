@@ -50,6 +50,7 @@ Here is the list of languages implemented so far.
 26. AWK (process)
 27. D (thread)
 28. Tcl (thread/process)
+29. COBOL (process)
 
 ### Usage
 
@@ -204,9 +205,14 @@ Common across languages.
 * Tcl: mpmt1.tcl
     * Thread and process mode are available.
     * `$ tclsh mpmt1.tcl [NUM_CONTEXT [DURATION [MODE]]]`
+* COBOL: mpmt1.cob
+    * Process mode only.
+    * I used GNU COBOL on Ubuntu 24.04(gnucobol3)
+    * `$ cobc -x -free -o mpmt1cob mpmt1.cob`
+    * `$ ./mpmt1cob [NUM_CONTEXT [DURATION]]`
 
 ### TODO
-* Add some more languages. (Mojo, WebAssembly, COBOL, PHP, Bash, etc.)
+* Add some more languages. (Mojo, WebAssembly, PHP, Bash, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
