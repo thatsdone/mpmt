@@ -49,7 +49,7 @@ Here is the list of languages implemented so far.
 25. Vala (thread)
 26. AWK (process)
 27. D (thread)
-28. Tcl (thread)
+28. Tcl (thread/process)
 
 ### Usage
 
@@ -202,8 +202,8 @@ Common across languages.
     * `$ rdmd mpmt1.d [NUM_CONTEXT [DURATION]]` or
     * `$ dmd  -of=mpmt1d  mpmt1.d` and `./mpmt1d [NUM_CONTEXT [DURATION]]`
 * Tcl: mpmt1.tcl
-    * Thread mode only at the moment.
-    * `$ tclsh mpmt1.tcl [NUM_CONTEXT [DURATION]]`
+    * Thread and process mode are available.
+    * `$ tclsh mpmt1.tcl [NUM_CONTEXT [DURATION [MODE]]]`
 
 ### TODO
 * Add some more languages. (Mojo, WebAssembly, COBOL, PHP, Bash, etc.)
