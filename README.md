@@ -129,7 +129,7 @@ Common across languages.
     * Does not implement getopt yet.
     * Usage:
         * `make haskell`
-        * `$ ./mpmt1hs NUM_CONTEXT DURATION +RTS -Nn `
+        * `$ ./mpmt1hs [NUM_CONTEXT [DURATION]] +RTS -Nn`
         * DURATION is in seconds, n of -N is number of platorm threads
 * Erlang: mpmt1.erl
     * Thread mode only at the moment.

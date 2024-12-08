@@ -42,9 +42,9 @@ main = do
 
   args <- getArgs
  
-  let num_context = if length args >= 2
-                    then (read  (head args) :: Int) else 4
-  let duration = if not (null args)
+  let num_context = if length args >= 1
+                    then (read  (args !! 0) :: Int) else 4
+  let duration = if length args >= 2
                  then (read  (args !! 1)  :: Int) else 5
 
   printf "num_context: %d duration: %d (s)\n"  num_context duration
