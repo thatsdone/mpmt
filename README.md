@@ -78,7 +78,7 @@ Common across languages.
           * https://peps.python.org/pep-0703/
         * This enabled mpmt1.py thread mode running in the same parallelism with multiprocessing mode. I checked using in-house built Python 3.13.0a6 on Ubuntu 22.04 with PYTHON_GIL=0 environment variable.
 * C: mpmt1.c
-  * Uses pthread and fork().
+  * Uses pthread for thread model and fork() for process model
   * Usage
     * `make c`
     * `./mpmt1c`
@@ -88,7 +88,7 @@ Common across languages.
         * `go run mpmt1.go` or
         * `make go && ./mpmt1go`
 * Rust: rust/
-    * Uses nix crate for multi-process model
+    * Uses nix crate for process model and std::thread for thread model
     * Usage
         * `cd rust`
         * `cargo run [-- [-m (t|p)] [-n NUM_CONTEXT] [-d DURATION]]`
@@ -98,7 +98,7 @@ Common across languages.
 * Ruby: mpmt1.rb
     * Implements thread mode only. No process mode at the moment.
 * Node.js: mpmt1.js
-    * Uses 'cluster' for process mode, 'worker_thread' for process mode.
+    * Uses 'cluster' for process model, 'worker_thread' for process model
         * https://nodejs.org/api/cluster.html
         * https://nodejs.org/api/worker_threads.html
     * Tested using docker image tagged: iron-bullseye-slim (v20.14.0)
@@ -121,7 +121,7 @@ Common across languages.
     * Thread mode only at the moment.
     * Note: Perl interpreter-based thread runs parallelly not only concurrently different from Python, Ruby, etc.
 * Elixir: mpmt1.exs
-    * Just worked version. Thread mode only at the moment.
+    * Thread mode only at the moment. Just worked version.
     * Install elixir (tested on Ubuntu 22.04 bundled 1.12.2 w/Erlang 24.2.1)
 * Haskell: mpmt1.hs
     * Thread mode (using forkIO) only at the moment.
