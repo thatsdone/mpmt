@@ -51,6 +51,7 @@ Here is the list of languages implemented so far.
 27. D (thread)
 28. Tcl (thread/process)
 29. COBOL (process)
+30. PHP (thread/process)
 
 ### Usage
 
@@ -210,9 +211,14 @@ Common across languages.
     * I used GNU COBOL on Ubuntu 24.04(gnucobol3)
     * `$ cobc -x -free -o mpmt1cob mpmt1.cob`
     * `$ ./mpmt1cob [NUM_CONTEXT [DURATION]]`
+* PHP: mpmt1.php
+    * Uses pcntl for process model and pthreads for thread model.
+    * Tested using docker image php:7.2.26-zts with pthreads/pcntl addition.
+    * See notes in mpmt1.php regarding some issues and reasons of PHP 7.x.
+    * `$ php mpmt1.php [NUM_CONTEXT [DURATION [MODE]]]`
 
 ### TODO
-* Add some more languages. (Mojo, WebAssembly, PHP, Bash, etc.)
+* Add some more languages. (Mojo, WebAssembly, Bash, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
