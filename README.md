@@ -52,6 +52,7 @@ Here is the list of languages implemented so far.
 28. Tcl (thread/process)
 29. COBOL (process)
 30. PHP (thread/process)
+31. Mojo (thread)
 
 ### Usage
 
@@ -216,9 +217,16 @@ Common across languages.
     * Tested using docker image php:7.2.26-zts with pthreads/pcntl addition.
     * See notes in mpmt1.php regarding some issues and reasons of PHP 7.x.
     * `$ php mpmt1.php [NUM_CONTEXT [DURATION [MODE]]]`
+* Mojo: mpmt1.mojo
+    * Thread mode only.
+    * Install mojo following: https://docs.modular.com/mojo/manual/get-started/
+    * `$ magic init . --format mojoproject`
+    * `$ magic shell`
+    * `(mojo) $ mojo mpmt1.mojo [NUM_CONTEXT [DURATION]]`
+    * How to pass arguments to thread by parallelize() is under investigation.
 
 ### TODO
-* Add some more languages. (Mojo, WebAssembly, Bash, etc.)
+* Add some more languages. (WebAssembly, Bend, Bash, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 
 ## 2. A simple test program for inter thread/process communication
