@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 nix = { version = "0.29.0", features = ["process"] }
+tailcall = "1.0.1"
 
 [[bin]]
 name = "mpmt1rs"

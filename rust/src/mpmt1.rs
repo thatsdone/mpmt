@@ -12,6 +12,7 @@
 //   * Implement multi-process opton
 
 #![feature(rustc_private)]
+//#![feature(explicit_tail_calls)]
 extern crate getopts;
 extern crate nix;
 use nix::unistd::{fork, ForkResult};
@@ -23,22 +24,25 @@ use std::thread;
 use std::time::SystemTime;
 use std::convert::TryInto;
 use std::process::exit;
+use tailcall::tailcall;
 
 fn worker(id: i32, duration: i32) {
-    let ts_save = SystemTime::now();
-    let max: u128 = (duration * 1000 * 1000).try_into().unwrap();
 
-    println!("worker: {} started. duration: {:?} (us)", id, max);
-
-    let mut diff: u128;
-    loop {
-        let ts = SystemTime::now();
-        diff = ts.duration_since(ts_save).unwrap().as_micros();
-        if diff >= max {
-            break;
+    #[tailcall]
+    fn busy_loop(ts_start: SystemTime, dur_us: u128) {
+        let ts_now = SystemTime::now();
+        let diff: u128  = ts_now.duration_since(ts_start).unwrap().as_micros();
+        if diff >= dur_us {
+            return
         }
+        busy_loop(ts_start, dur_us)
+        //become busy_loop(ts_start, dur_us)
     }
-    println!("worker: {} exiting... duration: {:?} (us)", id, diff);
+
+    let ts_start = SystemTime::now();
+    let dur_us: u128 = (duration * 1000 * 1000).try_into().unwrap();
+    busy_loop(ts_start, dur_us);
+    println!("Expired...: {}", id);
 }
 
 fn main() {
@@ -51,7 +55,7 @@ fn main() {
 
     let matches = opts.parse(&args[1..]).unwrap_or_else(|f| panic!("{}", f.to_string()));
     let num_context: i32 =  if matches.opt_present("n") {
-        matches.opt_strs("n")[0].parse::<i32>().unwrap()        
+        matches.opt_strs("n")[0].parse::<i32>().unwrap()
     } else {
         3
     };
