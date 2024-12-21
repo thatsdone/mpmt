@@ -53,7 +53,7 @@ Here is the list of languages implemented so far.
 29. COBOL (process)
 30. PHP (thread/process)
 31. Mojo (thread)
-32. WASM (thread)
+32. WASM/C (thread)
 
 ### Usage
 
@@ -225,8 +225,8 @@ Common across languages.
     * `$ magic shell`
     * `(mojo) $ mojo mpmt1.mojo [NUM_CONTEXT [DURATION]]`
     * How to pass arguments to thread by parallelize() is under investigation.
-* WASM: mpmt1-wasi.c
-    * Thread mode only.
+* WASM/C: mpmt1-wasi.c
+    * Thread mode only based on mpmt1.c
     * Followed article below.
       * https://bytecodealliance.org/articles/wasi-threads
     * Tested using wasi-sdk-25.0-x86_64-linux (release) and in-house built wasmtime 29.0.0 (d5ee2a04d 2024-12-06).
@@ -239,6 +239,7 @@ Common across languages.
 * Add some more languages. (Bend, Bash, PL/I, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 * Explore WASM implementation in other languages than C. e.g. Rust and/or Go.
+* Explore implementations on Embedded OSes such as Zephyr
 
 ## 2. A simple test program for inter thread/process communication
 
