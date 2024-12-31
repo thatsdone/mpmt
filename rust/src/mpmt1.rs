@@ -8,8 +8,6 @@
 //   * 2021/12/25 v0.1 Initial version.
 // Author:
 //   Masanori Itoh <masanori.itoh@gmail.com>
-// TODO:
-//   * Implement multi-process opton
 
 #![feature(rustc_private)]
 //#![feature(explicit_tail_calls)]
