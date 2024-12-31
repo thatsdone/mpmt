@@ -54,6 +54,7 @@ Here is the list of languages implemented so far.
 30. PHP (thread/process)
 31. Mojo (thread)
 32. WASM/C (thread)
+33. WASM/Rust (thread)
 
 ### Usage
 
@@ -233,12 +234,16 @@ Common across languages.
     * Set WASI_SDK_PATH environment variable to point the wasi-sdk path.
     * `$ make wasm`
     * `$ wasmtime -W threads=y -S threads=y ./mpmt1-wasi.wasm [-n NUM_CONTEXT] [-d DURATION]`
-
+* WASM/Rust: mpmt1-rust-wasi.rs
+    * Almost the same as the initial version of mpmt1.rs (thread only version)
+    * Built following official wasm32-wasip1-threads manual
+        * https://doc.rust-lang.org/rustc/platform-support/wasm32-wasip1-threads.html
+    * TODO: Explore how to build using cargo
 
 ### TODO
 * Add some more languages. (Bend, Bash, PL/I, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
-* Explore WASM implementation in other languages than C. e.g. Rust and/or Go.
+* Explore WASM implementation in other languages than C. e.g. Go.
 * Explore implementations on Embedded OSes such as Zephyr
 
 ## 2. A simple test program for inter thread/process communication
