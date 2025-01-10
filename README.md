@@ -238,6 +238,9 @@ Common across languages.
     * Almost the same as the initial version of mpmt1.rs (thread only version)
     * Built following official wasm32-wasip1-threads manual
         * https://doc.rust-lang.org/rustc/platform-support/wasm32-wasip1-threads.html
+    * `$ rustc --target wasm32-wasip1-threads mpmt1-rust-wasi.rs`
+    * `$ wasmtime  -W threads=y -S threads=y mpmt1-rust-wasi.wasm -n NUM_CONTEXT -d DURATION`
+    * Tested using rustc 1.85.0-nightly (33c245b9e 2024-12-10) and wasmtime 29.0.0 (d5ee2a04d 2024-12-06)
     * TODO: Explore how to build using cargo
 
 ### TODO
