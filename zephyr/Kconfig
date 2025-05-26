@@ -1,0 +1,13 @@
+config MPMT1_DURATION
+    string "duration"
+    default "5"
+
+config MPMT1_NUM_CONTEXT
+    string "number of contexts"
+    default "4"
+    
+config SMP
+    bool
+    default y
+
+source "Kconfig.zephyr"

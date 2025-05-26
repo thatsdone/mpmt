@@ -242,12 +242,15 @@ Common across languages.
     * `$ wasmtime  -W threads=y -S threads=y mpmt1-rust-wasi.wasm -n NUM_CONTEXT -d DURATION`
     * Tested using rustc 1.85.0-nightly (33c245b9e 2024-12-10) and wasmtime 29.0.0 (d5ee2a04d 2024-12-06)
     * TODO: Explore how to build using cargo
+* Zephyr: zephyr/
+    * Zephyr RTOS version in C language
+    * Very initial version
 
 ### TODO
 * Add some more languages. (Bend, Bash, PL/I, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 * Explore WASM implementation in other languages than C. e.g. Go.
-* Explore implementations on Embedded OSes such as Zephyr
+* Explore implementations on Embedded OSes such as Zephyr, FreeRTOS etc.
 
 ## 2. A simple test program for inter thread/process communication
 
