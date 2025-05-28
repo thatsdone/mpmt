@@ -19,6 +19,10 @@
        then
  *   * `$ west build -t run`
  *     Otherwise, you can run build/zephyr/zephyr.elf on qemu with
+ * REFERENCES:
+ *   * https://docs.zephyrproject.org/latest/develop/getting_started/index.html
+ *   * https://docs.zephyrproject.org/latest/boards/qemu/x86/doc/index.html
+ *   * https://docs.zephyrproject.org/latest/boards/qemu/kvm_arm64/doc/index.html
  * TODO:
  *   * Consinder thread priority (cooperative or preempt?)
  *   * Look into kernel thread joining method
