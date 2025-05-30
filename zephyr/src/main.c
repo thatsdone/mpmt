@@ -32,6 +32,8 @@
 #include <zephyr/kernel.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <zephyr/sys/printk.h>
+#include <zephyr/console/console.h>
 
 #define T_STACK_SIZE (1280 + 1024)
 #define NUM_THREADS 16
@@ -39,7 +41,7 @@ static K_THREAD_STACK_ARRAY_DEFINE(thread_stack, NUM_THREADS, T_STACK_SIZE);
 static struct k_thread threads[NUM_THREADS];
 
 
-void busy_worker(void *arg1, void *arg2, void *p_num_threads)
+void busy_worker(void *arg1, void *arg2, void *arg3)
 {
   int duration = (int)arg1;
   int tid = (int)arg2;
@@ -58,7 +60,6 @@ void busy_worker(void *arg1, void *arg2, void *p_num_threads)
     now2 = k_cycle_get_32();
     if ((now2 - now1) >=  dur) {
       printk("Expired \n");
-      (*(int *)p_num_threads)--;
       break;
     }
   }
@@ -68,36 +69,46 @@ void busy_worker(void *arg1, void *arg2, void *p_num_threads)
 
 int main(void)
 {
-
-  const char *s_duration = CONFIG_MPMT1_DURATION;
-  const char *s_num_context = CONFIG_MPMT1_NUM_CONTEXT;
   int duration = 0;
   int num_context = 0;
-  int num_threads = 0;
   int i;
   uint32_t start;
   uint32_t end;
+  char *s = NULL;
+
+  console_getline_init();
   
   printk("mpmt1 for Zephyr: target: %s num_cpus: %d\n", CONFIG_BOARD_TARGET, arch_num_cpus());
-  printk("num_context: %d duration: %d\n", atoi(s_num_context), atoi(s_duration));
 
-  duration = atoi(s_duration);
-  num_context = atoi(s_num_context);
+  printk("input num_context: ");
+  s = console_getline();
+  num_context = atoi(s);
+  if (num_context < 1) {
+    num_context = CONFIG_MPMT1_NUM_CONTEXT;
+  }
+  printk("input duration: ");
+  s = console_getline();
+  duration = atoi(s);
+  if (duration < 1) {
+    duration = CONFIG_MPMT1_DURATION;
+  }
+
+  printk("num_context: %d duration: %d\n", num_context, duration);
 
   start = k_cycle_get_32();
-  num_threads = num_context;
   for (i = 0; i < num_context; i++) {
     k_thread_create(&threads[i],
 		    thread_stack[i],
 		    T_STACK_SIZE,
 		    busy_worker,
-		    (void *)duration, (void *)i, (void *)&num_threads,
+		    (void *)duration, (void *)i, NULL,
 		    K_PRIO_PREEMPT(10), 0, K_NO_WAIT);
   }
 
-  while (num_threads) {
-      k_sleep(K_MSEC(1));
+  for (i = 0; i < num_context; i++) {
+    k_thread_join(&threads[i], K_FOREVER);
   }
+
   end = k_cycle_get_32();
   printk("total duration(ms): %lld\n", k_cyc_to_ms_floor64(end - start));
   printk("mpmt1 finished.\n");

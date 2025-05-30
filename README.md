@@ -55,6 +55,7 @@ Here is the list of languages implemented so far.
 31. Mojo (thread)
 32. WASM/C (thread)
 33. WASM/Rust (thread)
+34. Zephyr/C (kernel thread)
 
 ### Usage
 
