@@ -251,7 +251,7 @@ Common across languages.
 * Add some more languages. (Bend, Bash, PL/I, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 * Explore WASM implementation in other languages than C. e.g. Go.
-* Explore implementations on Embedded OSes such as Zephyr, FreeRTOS etc.
+* Explore implementations on Embedded OSes such as NuttX, FreeRTOS etc.
 
 ## 2. A simple test program for inter thread/process communication
 
