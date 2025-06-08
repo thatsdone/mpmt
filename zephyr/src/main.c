@@ -10,24 +10,11 @@
  * Author:
  *   Masanori Itoh <masanori.itoh@gmail.com>
  * BUILD & RUN:
- *   * Initialize your zephyr project
- *     * Tested west 1.4.0 and zephyr-sdk-0.17.0 on Ubuntu 24.04(arm64)
- *   * copy mpmt/zephyr into your zephyr project as mpmt1
- *   * `$ west build -p always -b qemu_qemu_x86_64 mpmt1`
- *     or
- *   * `$ west build -p always -b qemu_kvm_arm64 mpmt1`
-       then
- *   * `$ west build -t run`
- *     Otherwise, you can run build/zephyr/zephyr.elf on qemu with
- * REFERENCES:
- *   * https://docs.zephyrproject.org/latest/develop/getting_started/index.html
- *   * https://docs.zephyrproject.org/latest/boards/qemu/x86/doc/index.html
- *   * https://docs.zephyrproject.org/latest/boards/qemu/kvm_arm64/doc/index.html
+ *   See zephyr/README.md
  * TODO:
- *   * Consinder thread priority (cooperative or preempt?)
- *   * Look into kernel thread joining method
- *   * Consider using device tree for externally given variables
- *   * ...
+ *   * Consider thread priority usage (cooperative or preempt?)
+ *   * Consider using device tree for externally given variables?
+ *   * many...
  */
 #include <zephyr/kernel.h>
 #include <stdio.h>
