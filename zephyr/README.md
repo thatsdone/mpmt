@@ -36,7 +36,7 @@ $ sudoudo qemu-system-aarch64 \
     -cpu max \
     -smp 4 \
     -m 512 \
-    -kernel  \
+    -kernel zephyr.elf \
     -boot strict=on
 ```
 
