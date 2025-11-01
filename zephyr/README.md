@@ -3,8 +3,9 @@
 ## How to run
 
 1. Initialize your zephyr project following 
-    * Tested west 1.4.0 and zephyr-sdk-0.17.0 on Ubuntu 24.04(arm64)
+    * Tested west 1.4.0 and zephyr-sdk-0.17.0 on Ubuntu 24.04(arm64/amd64)
 2. copy mpmt/zephyr into your zephyr project as mpmt1
+    * Or use 'zephyr-env.sh' if you want to put this out of the zephyr tree.
 3. Build
     * `$ west build -p always -b qemu_x86_64 mpmt1` for (x86_64)
     * `$ west build -p always -b qemu_kvm_arm64 mpmt1` for (arm64)
@@ -13,7 +14,7 @@
     * You would be asked to input 2 integers, num_context and duration.
 
 ## Notes
-* In case of qemu_kvm_arm64, it looks like the line'CONFIG_MP_MAX_NUM_CPUS'
+* In case of qemu_kvm_arm64, it looks like the line 'CONFIG_MP_MAX_NUM_CPUS'
     needs to be commented out.
         
 ## Notes when invoking directly from qemu-system-*
@@ -46,7 +47,7 @@ $ sudoudo qemu-system-aarch64 \
 Below binaries are generated after you run `zephyr build -r run`.
     
 1. kernel: zephyr-qemu-locore.elf
-2. loader zephyr-qemu-main.elf
+2. loader: zephyr-qemu-main.elf
     
 ```
 $ sudo qemu-system-x86_64 -accel kvm \
