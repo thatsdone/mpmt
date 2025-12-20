@@ -56,6 +56,7 @@ Here is the list of languages implemented so far.
 32. WASM/C (thread)
 33. WASM/Rust (thread)
 34. Zephyr/C (kernel thread)
+35. Kotlin (thread)
 
 ### Usage
 
@@ -246,6 +247,10 @@ Common across languages.
 * Zephyr: zephyr/
     * Zephyr RTOS version in C language
     * Very initial version
+* Kotlin: kotlin/
+    * Thread mode only, coroutine is TBD
+    * Tested using JDK 21 and gradle 9.2.1
+    * `$ cd kotlin; ./gradlew run [--args "NUM_CONTEXT DURATION "]`
 
 ### TODO
 * Add some more languages. (Bend, Bash, PL/I, etc.)
