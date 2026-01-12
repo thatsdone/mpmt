@@ -250,16 +250,15 @@ Common across languages.
 * Kotlin: kotlin/
     * Thread mode only, coroutine is TBD
     * Tested using JDK 21 and gradle 9.2.1
-    * `$ cd kotlin; ./gradlew run [--args "NUM_CONTEXT DURATION "]`
+    * `$ cd kotlin; ./gradlew run [--args "NUM_CONTEXT [DURATION]" ]`
 
 ### TODO
-* Add some more languages. (Bend, Bash, PL/I, etc.)
+* Add some more languages. ([SPARK language](https://en.wikipedia.org/wiki/SPARK_(programming_language)), PL/I, Bash, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 * Explore WASM implementation in other languages than C. e.g. Go.
 * Explore implementations on Embedded OSes such as NuttX, FreeRTOS etc.
 * Explore implementations on AUTOSAR based RTOSes such as TRAMPOLINE.
 * Try MISRA-C/C++ compliant version.
-* Try [SPARK language](https://en.wikipedia.org/wiki/SPARK_(programming_language))
     
 ## 2. A simple test program for inter thread/process communication
 
