@@ -57,6 +57,7 @@ Here is the list of languages implemented so far.
 33. WASM/Rust (thread)
 34. Zephyr/C (kernel thread)
 35. Kotlin (thread)
+35. Nim (thread)
 
 ### Usage
 
@@ -251,9 +252,13 @@ Common across languages.
     * Thread mode only, coroutine is TBD
     * Tested using JDK 21 and gradle 9.2.1
     * `$ cd kotlin; ./gradlew run [--args "NUM_CONTEXT [DURATION]" ]`
+* Nim: mpmt1.nim
+    * Thread mode only, coroutine is TBD
+    * Tested using 1.6.14-1ubuntu2 on Ubuntu 24.04
+    * `nim --threads:on  c -r  mpmt1.nim NUM_CONTEXT [DURATION]``
 
 ### TODO
-* Add some more languages. ([SPARK language](https://en.wikipedia.org/wiki/SPARK_(programming_language)), PL/I, Nim, Bash, etc.)
+* Add some more languages. ([SPARK language](https://en.wikipedia.org/wiki/SPARK_(programming_language)), PL/I, Bash, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 * Explore WASM implementation in other languages than C. e.g. Go.
 * Explore implementations on Embedded OSes such as NuttX, FreeRTOS etc.
