@@ -253,7 +253,7 @@ Common across languages.
     * `$ cd kotlin; ./gradlew run [--args "NUM_CONTEXT [DURATION]" ]`
 
 ### TODO
-* Add some more languages. ([SPARK language](https://en.wikipedia.org/wiki/SPARK_(programming_language)), PL/I, Bash, etc.)
+* Add some more languages. ([SPARK language](https://en.wikipedia.org/wiki/SPARK_(programming_language)), PL/I, Nim, Bash, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 * Explore WASM implementation in other languages than C. e.g. Go.
 * Explore implementations on Embedded OSes such as NuttX, FreeRTOS etc.
