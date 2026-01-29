@@ -1,0 +1,111 @@
+/*
+ * mpmt1.pli: PL/I version of mpmt1
+ *
+ * STATUS:
+ *  Under development
+ * License:
+ *   Apache License, Version 2.0
+ * History:
+ *   2026/01/19 v0.1 Initial version based on:
+ * Author:
+ *   Masanori Itoh <masanori.itoh@gmail.com>
+ * USAGE:
+ *   * Download and extract Iron Sprint PL/I pli-1.4.0.tgz into the current.
+ *   * `make pli`
+ *   * `./mpmt1pli [ NUM_CONTEXT [DURATION] ]`
+ * TODO:
+ *   * Improve task completion synchronization.
+ */
+mpmt1: proc(parm) options (main);
+  dcl sysprint file stream output print external;
+  dcl parm char(*) varying;
+
+  dcl num_context fixed bin(31) init(4);
+  dcl duration fixed bin(31) init(5);
+  dcl i fixed bin(31);
+  dcl idx fixed bin(31);
+  dcl task_list(num_context) task;
+  dcl event_list(num_context) event;
+  dcl argv char(1024) varying;
+  dcl p fixed bin(31);
+  dcl token char(20) varying;
+
+  /*
+   * parse arguments and update num_context and duration
+   */
+  argv = parm;
+  p = index(argv, ' ');
+  idx = 0;
+  do while(length(argv) > 0);
+    argv = ltrim(argv);
+    p = index(argv, ' ');
+    if p = 0 then do;
+      token = argv;
+      argv = '';
+    end;
+    else do;
+      token = substr(argv, 1, p - 1);
+      argv = substr(argv, p + 1);
+    end;
+    if idx = 0 then do;
+      num_context = binary(token, 31);
+    end;
+    if idx = 1 then do;
+      duration = binary(token, 31);
+    end;
+    idx = idx + 1;
+  end;
+
+  /*
+   * show parameters
+   */
+  display('num_context: ' || ltrim(char(num_context)) ||
+    ' duration: ' || ltrim(char(duration)));
+
+  /*
+   * create tasks
+   */
+  do i = 1 to num_context;
+     display('attaching thread: ' || ltrim(char(i)));
+     call busy_worker(duration) task(task_list(i)) event(event_list(i));
+  end;
+
+  /*
+   * wait for task completion
+   */
+  /*
+  delay(duration * 1000);
+  do i = 1 to num_context;
+      wait(event_list(i));
+      display('task completed: ' || i);
+  end;
+  */
+  do i = 1 to num_context;
+      display('waiting thread: ' || ltrim(char(i)) || ' ' ||ltrim(char(status(event_list(i)))));
+      do while('1'b);
+        if status(event_list(i)) > 0 then leave;
+        delay(500);
+      end;
+  end;
+
+/*
+ * busy_worker
+ */
+busy_worker: proc(duration);
+  dcl duration real float;
+  dcl (start_time,curr_time,elapsed_time,diff);
+
+  display('busy_worker called.');
+
+  start_time = time;
+
+  diff = 0.0;
+  do while ('1'b);
+    curr_time = time;
+    diff = curr_time - start_time;
+    if diff >= duration * 1000 then leave;
+  end;
+  display('Expired.');
+end busy_worker;
+
+end mpmt1;

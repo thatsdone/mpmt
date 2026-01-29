@@ -58,6 +58,7 @@ Here is the list of languages implemented so far.
 34. Zephyr/C (kernel thread)
 35. Kotlin (thread)
 35. Nim (thread)
+36. PL/I (thread)
 
 ### Usage
 
@@ -255,10 +256,16 @@ Common across languages.
 * Nim: mpmt1.nim
     * Thread mode only, coroutine is TBD
     * Tested using 1.6.14-1ubuntu2 on Ubuntu 24.04
-    * `nim --threads:on  c -r  mpmt1.nim NUM_CONTEXT [DURATION]``
+    * `nim --threads:on  c -r  mpmt1.nim [NUM_CONTEXT [DURATION]]`
+* PL/I
+    * Thread(task) mode only
+    * Tested using Iron Spring PL/I 1.4.0.
+    * Download and extract pli-1.4.0.tar.gz
+    * `make pli && ./mpmt1pli  [NUM_CONTEXT [DURATION] ]`
+    * TODO: Improve task completion synchronization
 
 ### TODO
-* Add some more languages. ([SPARK language](https://en.wikipedia.org/wiki/SPARK_(programming_language)), PL/I, Bash, etc.)
+* Add some more languages. ([SPARK language](https://en.wikipedia.org/wiki/SPARK_(programming_language)), Bash, etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 * Explore WASM implementation in other languages than C. e.g. Go.
 * Explore implementations on Embedded OSes such as NuttX, FreeRTOS etc.
