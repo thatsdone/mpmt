@@ -259,8 +259,7 @@ Common across languages.
     * `nim --threads:on  c -r  mpmt1.nim [NUM_CONTEXT [DURATION]]`
 * PL/I
     * Thread(task) mode only
-    * Tested using Iron Spring PL/I 1.4.0.
-    * Download and extract pli-1.4.0.tar.gz
+    * Tested using Iron Spring PL/I, download and extract pli-1.4.0.tar.gz
     * `make pli && ./mpmt1pli  [NUM_CONTEXT [DURATION] ]`
     * TODO: Improve task completion synchronization
 
