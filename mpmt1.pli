@@ -6,11 +6,12 @@
  * License:
  *   Apache License, Version 2.0
  * History:
- *   2026/01/19 v0.1 Initial version based on:
+ *   2026/01/30 v0.1 Initial version
  * Author:
  *   Masanori Itoh <masanori.itoh@gmail.com>
  * USAGE:
- *   * Download and extract Iron Sprint PL/I pli-1.4.0.tgz into the current.
+ *   * Download and extract Iron Sprint PL/I, I used pli-1.4.0.tgz
+ *   * Extract the archive and set PATH and modify Makefile if necessary
  *   * `make pli`
  *   * `./mpmt1pli [ NUM_CONTEXT [DURATION] ]`
  * TODO:
@@ -31,7 +32,7 @@ mpmt1: proc(parm) options (main);
   dcl token char(20) varying;
 
   /*
-   * parse arguments and update num_context and duration
+   * parse arguments and update num_context and duration if necessary
    */
   argv = parm;
   p = index(argv, ' ');
