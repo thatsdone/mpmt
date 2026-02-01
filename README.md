@@ -59,6 +59,7 @@ Here is the list of languages implemented so far.
 35. Kotlin (thread)
 35. Nim (thread)
 36. PL/I (thread)
+36. Bash (process)
 
 ### Usage
 
@@ -262,15 +263,19 @@ Common across languages.
     * Tested using Iron Spring PL/I, download and extract pli-1.4.0.tar.gz
     * `make pli && ./mpmt1pli  [NUM_CONTEXT [DURATION] ]`
     * TODO: Improve task completion synchronization
+* Bash
+    * Process only
+    * `bash mpmt1.sh [ NUM_CONTEXT [DURATION] ]`
+    * TODO: Use get opt.
 
 ### TODO
-* Add some more languages. ([SPARK language](https://en.wikipedia.org/wiki/SPARK_(programming_language)), Bash, etc.)
+* Add some more languages. ([SPARK language](https://en.wikipedia.org/wiki/SPARK_(programming_language)), etc.)
 * Update some language implementations (Erlang, etc.) to use message passing mechanism for synchronizing main/worker threads.
 * Explore WASM implementation in other languages than C. e.g. Go.
 * Explore implementations on Embedded OSes such as NuttX, FreeRTOS etc.
 * Explore implementations on AUTOSAR based RTOSes such as TRAMPOLINE.
 * Try MISRA-C/C++ compliant version.
-    
+
 ## 2. A simple test program for inter thread/process communication
 
 Measures inter thread/process communication performance.
