@@ -275,6 +275,7 @@ Common across languages.
 * Explore implementations on Embedded OSes such as NuttX, FreeRTOS etc.
 * Explore implementations on AUTOSAR based RTOSes such as TRAMPOLINE.
 * Try MISRA-C/C++ compliant version.
+* Try RISC-V IP core on FPGA (Tang Primer 25K)
 
 ## 2. A simple test program for inter thread/process communication
 
